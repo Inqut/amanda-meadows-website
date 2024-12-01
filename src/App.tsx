@@ -1,7 +1,7 @@
 import React from 'react';
-import { AnimatePresence } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { AnimatePresence } from 'framer-motion';
 import { usePersonaStore } from './store/personaStore';
 import { PersonaSwitcher } from './components/PersonaSwitcher';
 import { CharleneLanding } from './components/CharleneLanding';

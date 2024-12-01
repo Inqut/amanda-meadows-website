@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mic, ShoppingBag, Calendar, Users } from 'lucide-react';
 import { emailService } from '../services/emailService';
+import { databaseService } from '../services/databaseService';
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -100,10 +101,32 @@ export const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, type 
 
     setStatus('sending');
 
-    const success = await emailService.sendContactForm({
-      name: formData.name,
-      email: formData.email,
-      message: `
+    try {
+      // Store in database (don't wait for it)
+      databaseService.storeContactSubmission({
+        name: formData.name,
+        email: formData.email,
+        subject: getFormTitle(),
+        message: `
+Company: ${formData.company}
+Type: ${formData.inquiryType}
+Platform Details: ${formData.platformDetails}
+Audience Size: ${formData.audienceSize}
+Proposed Date: ${formData.proposedDate}
+Budget: ${formData.budget}
+
+Message:
+${formData.message}`.trim()
+      }).catch(error => {
+        console.error('Database storage error:', error);
+        // Continue with form submission even if database storage fails
+      });
+
+      // Send email via Formspree
+      const success = await emailService.sendContactForm({
+        name: formData.name,
+        email: formData.email,
+        message: `
 Subject: ${getFormTitle()}
 Company: ${formData.company}
 Type: ${formData.inquiryType}
@@ -114,30 +137,36 @@ Budget: ${formData.budget}
 
 Message:
 ${formData.message}
-      `.trim()
-    });
+        `.trim()
+      });
 
-    setStatus(success ? 'success' : 'error');
-    
-    if (success) {
-      setTimeout(() => {
-        onClose();
-        setStatus('idle');
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          inquiryType: type,
-          platformDetails: '',
-          audienceSize: '',
-          proposedDate: '',
-          budget: '',
-          message: '',
-          subject: '',
-        });
-      }, 2000);
-    } else {
-      setErrorMessage('Failed to send message. Please try again later.');
+      setStatus(success ? 'success' : 'error');
+      
+      if (success) {
+        setTimeout(() => {
+          onClose();
+          setStatus('idle');
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            inquiryType: type,
+            platformDetails: '',
+            audienceSize: '',
+            proposedDate: '',
+            budget: '',
+            message: '',
+            subject: '',
+          });
+        }, 2000);
+      } else {
+        setErrorMessage('Failed to send message. Please try again later.');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setStatus('error');
+      setErrorMessage('An unexpected error occurred. Please try again.');
       setTimeout(() => setStatus('idle'), 3000);
     }
   };

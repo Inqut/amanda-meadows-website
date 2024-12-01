@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, X, CheckCircle } from 'lucide-react';
 import { emailService } from '../services/emailService';
+import { databaseService } from '../services/databaseService';
 
 interface NewsletterSignupProps {
   isOpen: boolean;
@@ -38,21 +39,39 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ isOpen, onCl
     setIsSubmitting(true);
     setErrorMessage('');
     
-    const success = await emailService.sendNewsletterSubscription({ email });
-    
-    if (success) {
-      setStatus('success');
-      setEmail('');
-      setTimeout(() => {
-        onClose();
-        setStatus('idle');
-      }, 2000);
-    } else {
+    try {
+      // Store in database (don't wait for it)
+      databaseService.storeNewsletterSubscription({
+        email: email,
+        status: 'subscribed'
+      }).catch(error => {
+        console.error('Database storage error:', error);
+        // Continue with form submission even if database storage fails
+      });
+
+      // Send via Formspree
+      const success = await emailService.sendNewsletterSubscription({ email });
+      
+      if (success) {
+        setStatus('success');
+        setEmail('');
+        setTimeout(() => {
+          onClose();
+          setStatus('idle');
+        }, 2000);
+      } else {
+        setStatus('error');
+        setErrorMessage('Failed to subscribe. Please try again later.');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
       setStatus('error');
-      setErrorMessage('Failed to subscribe. Please try again later.');
+      setErrorMessage('An unexpected error occurred. Please try again.');
       setTimeout(() => setStatus('idle'), 3000);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
