@@ -192,26 +192,26 @@ ${formData.message}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", damping: 20 }}
-            className="fixed inset-0 flex items-center justify-center p-4 z-50"
+            className="fixed inset-0 flex items-center justify-center p-2 sm:p-4 z-50"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="bg-[#FDFBF7] rounded-2xl shadow-2xl overflow-hidden w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-              <div className="p-6 md:p-8">
+              <div className="p-4 sm:p-6 md:p-8">
                 <button
                   onClick={onClose}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
+                  className="absolute top-2 sm:top-4 right-2 sm:right-4 p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
                 >
-                  <X className="w-6 h-6 text-[#8B7355]" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#8B7355]" />
                 </button>
 
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
                   {getFormIcon()}
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#8B7355]">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#8B7355]">
                     {getFormTitle()}
                   </h2>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-[#8B7355] mb-1">
@@ -224,7 +224,7 @@ ${formData.message}
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                       />
                     </div>
                     <div>
@@ -238,7 +238,7 @@ ${formData.message}
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -254,7 +254,7 @@ ${formData.message}
                       required
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                     />
                   </div>
 
@@ -271,7 +271,7 @@ ${formData.message}
                       required
                       value={formData.platformDetails}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                     />
                   </div>
 
@@ -286,7 +286,7 @@ ${formData.message}
                         required
                         value={formData.audienceSize}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                       >
                         <option value="">Select size</option>
                         <option value="0-5k">0-5k</option>
@@ -306,7 +306,7 @@ ${formData.message}
                         required
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                       >
                         <option value="">Select budget</option>
                         <option value="0-1k">$0-1k</option>
@@ -329,7 +329,7 @@ ${formData.message}
                       value={formData.proposedDate}
                       onChange={handleChange}
                       placeholder="e.g., Q1 2024, March 15th, or Flexible"
-                      className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                     />
                   </div>
 
@@ -344,7 +344,7 @@ ${formData.message}
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent"
                     />
                   </div>
 
@@ -360,23 +360,23 @@ ${formData.message}
                       onChange={handleChange}
                       rows={4}
                       placeholder="Please include any additional information about your proposal..."
-                      className="w-full px-4 py-2 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent resize-none"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent resize-none"
                     />
                   </div>
 
-                  <div className="flex items-center justify-end gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 sm:gap-4 pt-4">
                     {status === 'error' && (
-                      <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+                      <p className="text-red-500 text-sm order-first sm:order-none">{errorMessage}</p>
                     )}
                     {status === 'success' && (
-                      <p className="text-[#8B7355] text-sm">
+                      <p className="text-[#8B7355] text-sm order-first sm:order-none">
                         Message sent successfully!
                       </p>
                     )}
                     <button
                       type="submit"
                       disabled={status === 'sending'}
-                      className={`flex items-center gap-2 px-6 py-2 rounded-full font-medium text-[#FDFBF7]
+                      className={`flex items-center justify-center gap-2 px-6 py-2.5 sm:py-2 rounded-full font-medium text-[#FDFBF7] w-full sm:w-auto
                         ${status === 'sending' 
                           ? 'bg-[#D4AF37]/50 cursor-not-allowed' 
                           : 'bg-gradient-to-r from-[#D4AF37] via-[#B8860B] to-[#D4AF37] hover:from-[#B8860B] hover:to-[#DAA520]'

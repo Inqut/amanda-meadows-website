@@ -49,17 +49,17 @@ export const CharleneLanding: React.FC = () => {
       {/* Decorative Elements */}
       <DecorativeElements />
 
-      <div className="container mx-auto px-4 py-12 flex-grow">
+      <div className="container mx-auto px-4 py-8 sm:py-12 flex-grow">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h1 className="text-6xl font-bold text-[#D4AF37] mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#D4AF37] mb-2 sm:mb-4">
             Welcome to The Trailer Park
           </h1>
-          <p className="text-2xl text-[#B8860B]">
+          <p className="text-xl sm:text-2xl text-[#B8860B]">
             Home of Queen Charlene
           </p>
         </motion.div>
@@ -69,20 +69,20 @@ export const CharleneLanding: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           onClick={() => setIsAwardsOpen(true)}
-          className="mx-auto mb-12 flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#B8860B]
-                   text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow"
+          className="mx-auto mb-8 sm:mb-12 flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#B8860B]
+                   text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow w-full sm:w-auto"
         >
-          <Trophy className="w-5 h-5" />
+          <Trophy className="w-4 h-4 sm:w-5 sm:h-5" />
           View Award Nominations
         </motion.button>
 
         {/* Full-width video container */}
-        <div className="relative -mx-4 mb-16">
-          <div className="container mx-auto">
-            <div className="aspect-video w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
+        <div className="relative -mx-4 mb-8 sm:mb-16">
+          <div className="container mx-auto px-4">
+            <div className="aspect-video w-full max-w-[1400px] mx-auto rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl">
               <video
                 src={welcomeVideo}
-                className="w-full h-full object-cover rounded-2xl"
+                className="w-full h-full object-cover rounded-xl sm:rounded-2xl"
                 autoPlay
                 loop
                 muted
@@ -101,17 +101,17 @@ export const CharleneLanding: React.FC = () => {
           transition={{ delay: 0.6 }}
         >
           {/* Meet Amanda Section */}
-          <div id="creator" className="mb-12">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div id="creator" className="mb-6 sm:mb-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-8 items-center">
                 <div>
-                  <h2 className="text-3xl font-bold text-[#D4AF37] mb-4">Meet The Creator</h2>
-                  <p className="text-lg text-gray-700 mb-4">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-3 sm:mb-4">Meet The Creator</h2>
+                  <p className="text-base sm:text-lg text-gray-700 mb-3 sm:mb-4">
                     Behind Queen Charlene and the whole trailer park crew is Amanda Meadows, 
                     a talented comedian and content creator from North Carolina. Amanda brings these 
                     characters to life with her unique blend of humor and heart.
                   </p>
-                  <p className="text-lg text-gray-700">
+                  <p className="text-base sm:text-lg text-gray-700">
                     Want to see more of Amanda's work? Check out her professional page for 
                     bookings, collaborations, and more!
                   </p>
@@ -128,12 +128,12 @@ export const CharleneLanding: React.FC = () => {
           </div>
 
           {/* Additional Henry Content */}
-          <div id="characters" className="mb-12">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div id="characters" className="mb-6 sm:mb-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-8 items-center">
                 <div>
-                  <h2 className="text-3xl font-bold text-[#D4AF37] mb-4">Henry's Corner</h2>
-                  <p className="text-lg text-gray-700 mb-4">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-3 sm:mb-4">Henry's Corner</h2>
+                  <p className="text-base sm:text-lg text-gray-700 mb-3 sm:mb-4">
                     Join Henry for his unique take on life, love, and trailer park living. 
                     From BBQ tips to dad jokes, Henry's got something for everyone!
                   </p>
@@ -155,12 +155,12 @@ export const CharleneLanding: React.FC = () => {
           </div>
 
           {/* Upcoming Events Section */}
-          <div id="events" className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-12">
+          <div id="events" className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl mb-6 sm:mb-12">
             <UpcomingEvents />
           </div>
 
           {/* Social Links */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl">
             <SocialLinks />
           </div>
         </motion.div>

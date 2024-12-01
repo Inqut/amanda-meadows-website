@@ -61,26 +61,26 @@ const socialLinks: SocialLink[] = [
 
 export const SocialLinks: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
-    <div className="p-2">
-      <h3 className="text-xl font-bold text-pink-800 mb-4">Connect with Amanda</h3>
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ${className}`}>
+    <div className="p-2 sm:p-4">
+      <h3 className="text-lg sm:text-xl font-bold text-pink-800 mb-3 sm:mb-4">Connect with Amanda</h3>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 ${className}`}>
         {socialLinks.map((link) => (
           <a
             key={link.platform}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-pink-100 to-purple-100 
+            className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-gradient-to-r from-pink-100 to-purple-100 
                      hover:from-pink-200 hover:to-purple-200 transition-all duration-300 group"
           >
-            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full 
+            <span className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full 
                            bg-gradient-to-r from-pink-500 to-purple-500 text-white 
                            group-hover:from-pink-600 group-hover:to-purple-600">
               {link.icon}
             </span>
             <div className="min-w-0">
-              <p className="font-semibold text-gray-800 text-sm whitespace-nowrap">{link.platform}</p>
-              <p className="text-gray-600 text-xs truncate">{link.handle}</p>
+              <p className="font-semibold text-gray-800 text-xs sm:text-sm whitespace-nowrap">{link.platform}</p>
+              <p className="text-gray-600 text-[10px] sm:text-xs truncate">{link.handle}</p>
             </div>
           </a>
         ))}
