@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Trophy } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { SocialFeed } from './SocialFeed';
 import { UpcomingEvents } from './UpcomingEvents';
 import { ExclusiveContent } from './ExclusiveContent';
 import { SocialLinks } from './SocialLinks';
@@ -160,14 +159,9 @@ export const CharleneLanding: React.FC = () => {
             <UpcomingEvents />
           </div>
 
-          {/* Social Feed and Links */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-              <SocialFeed />
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-              <SocialLinks />
-            </div>
+          {/* Social Links */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+            <SocialLinks />
           </div>
         </motion.div>
       </div>
