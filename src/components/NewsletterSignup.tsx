@@ -1,0 +1,124 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, X, Loader2, CheckCircle } from 'lucide-react';
+import { emailService } from '../services/emailService';
+
+interface NewsletterSignupProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ isOpen, onClose }) => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    
+    const result = await emailService.sendNewsletterSubscription({ email });
+    
+    if (result.success) {
+      setStatus('success');
+      setEmail('');
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+    } else {
+      setStatus('error');
+    }
+    setIsSubmitting(false);
+  };
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+          onClick={handleBackdropClick}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: "spring", damping: 20 }}
+            className="fixed inset-0 flex items-center justify-center p-4 z-50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative z-10 bg-[#FDFBF7] rounded-2xl shadow-xl p-8">
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-[#D4AF37]/10 transition-colors text-[#8B7355]"
+                aria-label="Close newsletter signup"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="max-w-md mx-auto">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-[#8B7355]">Stay Updated</h3>
+                  <p className="mt-2 text-[#A69064]">
+                    Subscribe to receive updates about shows, collaborations, and exclusive content.
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="flex-1 px-4 py-3 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent bg-white text-[#5C4033] placeholder-[#C4A484]"
+                    />
+                    <button
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                      className="relative overflow-hidden px-8 py-3 bg-gradient-to-r from-[#D4AF37] via-[#B8860B] to-[#D4AF37] bg-[length:200%_100%] text-[#FDFBF7] font-bold rounded-lg hover:bg-[center_right_1rem] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px] flex items-center justify-center shadow-lg hover:shadow-[#D4AF37]/25 group"
+                    >
+                      <div className="relative flex items-center gap-2">
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-5 h-5 border-3 border-[#FDFBF7]/30 border-t-[#FDFBF7] rounded-full animate-spin" />
+                            <span className="font-medium">Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                            <span className="font-medium">Subscribe</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#B8860B] to-[#DAA520] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </button>
+                  </div>
+
+                  {status === 'error' && (
+                    <p className="mt-4 text-[#8B4513] text-sm">
+                      Failed to subscribe. Please try again.
+                    </p>
+                  )}
+                  {status === 'success' && (
+                    <div className="mt-4 flex items-center gap-2 text-[#8B7355]">
+                      <CheckCircle className="w-5 h-5" />
+                      <p className="text-sm">Successfully subscribed!</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};

@@ -1,0 +1,179 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Trophy } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { SocialFeed } from './SocialFeed';
+import { UpcomingEvents } from './UpcomingEvents';
+import { ExclusiveContent } from './ExclusiveContent';
+import { SocialLinks } from './SocialLinks';
+import { AwardsModal } from './AwardsModal';
+import { DecorativeElements } from './DecorativeElements';
+import { Footer } from './Footer';
+
+export const CharleneLanding: React.FC = () => {
+  const [isAwardsOpen, setIsAwardsOpen] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+
+  // Infinite scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = scrollRef.current;
+      if (!element) return;
+
+      const { scrollTop, scrollHeight, clientHeight } = element;
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        // When near bottom, scroll back to a point near the top
+        element.scrollTop = 100;
+      } else if (scrollTop <= 0) {
+        // When at top, scroll to a point near the bottom
+        element.scrollTop = scrollHeight - clientHeight - 100;
+      }
+    };
+
+    const element = scrollRef.current;
+    if (element) {
+      element.addEventListener('scroll', handleScroll);
+      return () => element.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
+  return (
+    <div 
+      ref={scrollRef}
+      className="min-h-screen bg-gradient-to-b from-[#FFF0F5] to-[#FFE4E1] overflow-auto relative flex flex-col"
+    >
+      {/* Decorative Elements */}
+      <DecorativeElements />
+
+      <div className="container mx-auto px-4 py-12 flex-grow">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-6xl font-bold text-[#D4AF37] mb-4">
+            Welcome to The Trailer Park
+          </h1>
+          <p className="text-2xl text-[#B8860B]">
+            Home of Queen Charlene
+          </p>
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          onClick={() => setIsAwardsOpen(true)}
+          className="mx-auto mb-12 flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#B8860B]
+                   text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <Trophy className="w-5 h-5" />
+          View Award Nominations
+        </motion.button>
+
+        {/* Full-width video container */}
+        <div className="relative -mx-4 mb-16">
+          <div className="container mx-auto">
+            <div className="aspect-video w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                src="/src/assets/videos/hero/Welcome to the Trailer Park.mp4"
+                className="w-full h-full object-cover rounded-2xl"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
+                  pointerEvents: 'none'
+                }}
+              >
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+            </div>
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          {/* Meet Amanda Section */}
+          <div id="creator" className="mb-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h2 className="text-3xl font-bold text-[#D4AF37] mb-4">Meet The Creator</h2>
+                  <p className="text-lg text-gray-700 mb-4">
+                    Behind Queen Charlene and the whole trailer park crew is Amanda Meadows, 
+                    a talented comedian and content creator from North Carolina. Amanda brings these 
+                    characters to life with her unique blend of humor and heart.
+                  </p>
+                  <p className="text-lg text-gray-700">
+                    Want to see more of Amanda's work? Check out her professional page for 
+                    bookings, collaborations, and more!
+                  </p>
+                </div>
+                <div>
+                  <img
+                    src="/src/assets/images/amanda/amanda1.png"
+                    alt="Amanda Meadows"
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Henry Content */}
+          <div id="characters" className="mb-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h2 className="text-3xl font-bold text-[#D4AF37] mb-4">Henry's Corner</h2>
+                  <p className="text-lg text-gray-700 mb-4">
+                    Join Henry for his unique take on life, love, and trailer park living. 
+                    From BBQ tips to dad jokes, Henry's got something for everyone!
+                  </p>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Henry's BBQ Masterclass</li>
+                    <li>Front Porch Philosophy</li>
+                    <li>Dad's Life Lessons</li>
+                  </ul>
+                </div>
+                <div>
+                  <img
+                    src="/src/assets/images/henry/henery2.png"
+                    alt="Henry's Wisdom"
+                    className="w-full h-auto object-contain rounded-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Upcoming Events Section */}
+          <div id="events" className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-12">
+            <UpcomingEvents />
+          </div>
+
+          {/* Social Feed and Links */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+              <SocialFeed />
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+              <SocialLinks />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      <AwardsModal isOpen={isAwardsOpen} onClose={() => setIsAwardsOpen(false)} />
+      <Footer />
+    </div>
+  );
+};
