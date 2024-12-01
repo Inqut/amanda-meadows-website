@@ -9,6 +9,11 @@ import { AwardsModal } from './AwardsModal';
 import { DecorativeElements } from './DecorativeElements';
 import { Footer } from './Footer';
 
+// Import media using @assets alias
+import welcomeVideo from '@assets/videos/hero/Welcome to the Trailer Park.mp4';
+import amandaImage from '@assets/images/amanda/amanda1.png';
+import henryImage from '@assets/images/henry/henery2.png';
+
 export const CharleneLanding: React.FC = () => {
   const [isAwardsOpen, setIsAwardsOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -77,17 +82,12 @@ export const CharleneLanding: React.FC = () => {
           <div className="container mx-auto">
             <div className="aspect-video w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl">
               <video
-                src="/src/assets/videos/hero/Welcome to the Trailer Park.mp4"
+                src={welcomeVideo}
                 className="w-full h-full object-cover rounded-2xl"
                 autoPlay
                 loop
                 muted
                 playsInline
-                style={{
-                  WebkitBackfaceVisibility: 'hidden',
-                  backfaceVisibility: 'hidden',
-                  pointerEvents: 'none'
-                }}
               >
                 Your browser does not support the video tag.
               </video>
@@ -119,7 +119,7 @@ export const CharleneLanding: React.FC = () => {
                 </div>
                 <div>
                   <img
-                    src="/src/assets/images/amanda/amanda1.png"
+                    src={amandaImage}
                     alt="Amanda Meadows"
                     className="w-full h-auto object-contain rounded-xl"
                   />
@@ -146,7 +146,7 @@ export const CharleneLanding: React.FC = () => {
                 </div>
                 <div>
                   <img
-                    src="/src/assets/images/henry/henery2.png"
+                    src={henryImage}
                     alt="Henry's Wisdom"
                     className="w-full h-auto object-contain rounded-xl"
                   />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, MapPin, Ticket } from 'lucide-react';
 import { motion } from 'framer-motion';
+import eventImage from '@public/images/events/2.png';
 
 interface Event {
   id: string;
@@ -76,7 +77,7 @@ export const UpcomingEvents: React.FC = () => {
               </div>
               <div className="w-full md:w-48 flex-shrink-0">
                 <img
-                  src="../../public/images/events/2.png"
+                  src={eventImage}
                   alt={event.title}
                   className="w-48 h-48 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform"
                   onError={(e) => {
