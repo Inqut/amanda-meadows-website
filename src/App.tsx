@@ -11,7 +11,7 @@ function App() {
   const { currentPersona } = usePersonaStore();
 
   return (
-    <div className="relative">
+    <div className="min-h-screen bg-white font-['Montserrat'] overflow-x-hidden">
       <PersonaSwitcher />
       <AnimatePresence mode="wait">
         {currentPersona === 'charlene' ? <CharleneLanding /> : <AmandaLanding />}

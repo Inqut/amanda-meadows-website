@@ -26,7 +26,7 @@ const upcomingEvents: Event[] = [
 export const UpcomingEvents: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto mb-8 sm:mb-16">
-      <h2 className="text-2xl sm:text-3xl font-bold text-[#D4AF37] mb-6 sm:mb-8 text-center">Upcoming Events</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold text-teal-800 mb-6 sm:mb-8 text-center">Upcoming Events</h2>
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl space-y-6 sm:space-y-8">
         {upcomingEvents.map((event, index) => (
           <motion.div
@@ -37,7 +37,7 @@ export const UpcomingEvents: React.FC = () => {
             className="flex flex-col md:flex-row gap-6 sm:gap-8 items-start"
           >
             <div className="flex-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#D4AF37] mb-3">{event.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-teal-700 mb-3">{event.title}</h3>
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span className="text-sm sm:text-base">{event.date}</span>
@@ -61,7 +61,7 @@ export const UpcomingEvents: React.FC = () => {
                   href="https://www.facebook.com/share/19gLpRmbnS/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white 
+                  className="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white 
                            px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all
                            relative overflow-hidden group w-full sm:w-auto"
                 >

@@ -7,18 +7,27 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      colors: {
+        'brand': {
+          'teal': '#008080',
+          'emerald': '#50C878',
+        },
       },
       animation: {
-        'spotlight': 'spotlight 2s ease .75s 1 forwards',
+        'scroll': 'scroll 40s linear infinite',
+        'shine': 'shine 1.5s linear infinite',
       },
       keyframes: {
-        spotlight: {
-          '0%': { opacity: 0, transform: 'scale(1.2)' },
-          '100%': { opacity: 1, transform: 'scale(1)' },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

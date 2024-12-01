@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 interface Brand {
   name: string;
   logo: string;
-  link?: string;
+  url: string;
 }
 
 interface BrandSliderProps {
@@ -45,26 +45,18 @@ export const BrandSlider: React.FC<BrandSliderProps> = ({ brands }) => {
                 key={`${brand.name}-${index}`}
                 className="flex-shrink-0 w-64 h-40 bg-white rounded-lg shadow-md p-6 flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:bg-[#FFF8E7] group border border-[#D4B886]/20"
               >
-                {brand.link ? (
-                  <a
-                    href={brand.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    <img
-                      src={brand.logo}
-                      alt={brand.name}
-                      className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
-                    />
-                  </a>
-                ) : (
+                <a
+                  href={brand.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-full flex items-center justify-center"
+                >
                   <img
                     src={brand.logo}
                     alt={brand.name}
                     className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
                   />
-                )}
+                </a>
               </div>
             ))}
           </motion.div>
@@ -91,26 +83,18 @@ export const BrandSlider: React.FC<BrandSliderProps> = ({ brands }) => {
                 key={`${brand.name}-${index}-reverse`}
                 className="flex-shrink-0 w-64 h-40 bg-white rounded-lg shadow-md p-6 flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:bg-[#FFF8E7] group border border-[#D4B886]/20"
               >
-                {brand.link ? (
-                  <a
-                    href={brand.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full h-full flex items-center justify-center"
-                  >
-                    <img
-                      src={brand.logo}
-                      alt={brand.name}
-                      className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
-                    />
-                  </a>
-                ) : (
+                <a
+                  href={brand.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-full flex items-center justify-center"
+                >
                   <img
                     src={brand.logo}
                     alt={brand.name}
                     className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
                   />
-                )}
+                </a>
               </div>
             ))}
           </motion.div>
@@ -123,3 +107,51 @@ export const BrandSlider: React.FC<BrandSliderProps> = ({ brands }) => {
     </div>
   );
 };
+
+import azureBeauty from '../assets/images/brands/azure-beauty.png';
+import dustyDiamond from '../assets/images/brands/dusty-diamond-boutique.avif';
+import guinthers from '../assets/images/brands/guinthers.avif';
+import kvalley from '../assets/images/brands/kvalleypng.png';
+import squattyPotty from '../assets/images/brands/squatty-potty.jpeg';
+import tts from '../assets/images/brands/ttspng.png';
+import ncCustomModulars from '../assets/images/brands/NCCustomModulars.jpeg';
+
+const brands: Brand[] = [
+  {
+    name: 'Azure Beauty',
+    logo: azureBeauty,
+    url: 'https://azurebeautyus.com/'
+  },
+  {
+    name: 'Dusty Diamond Boutique',
+    logo: dustyDiamond,
+    url: 'https://dustydiamondsboutique.com/?srsltid=AfmBOopBUtLcblHc1IqGFgh5dTvtYIziw8zenNyGDLEXjxdUL1q6fs_p'
+  },
+  {
+    name: 'Guinthers',
+    logo: guinthers,
+    url: 'https://guinthers.com/'
+  },
+  {
+    name: 'K Valley',
+    logo: kvalley,
+    url: 'https://kvalley.com'
+  },
+  {
+    name: 'Squatty Potty',
+    logo: squattyPotty,
+    url: 'https://www.squattypotty.com/collections/stools?utm_source=google&utm_medium=cpc&utm_campaign=21131326958&utm_content=162710012320&utm_term=squatty%20potty&gad_source=1'
+  },
+  {
+    name: 'TTS',
+    logo: tts,
+    url: 'https://tts.com'
+  },
+  {
+    name: 'North Carolina Custom Modulars',
+    logo: ncCustomModulars,
+    url: 'https://www.mydreammodular.com/'
+  }
+];
+
+export default BrandSlider;

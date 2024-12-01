@@ -1,7 +1,26 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Share2, Twitter, Facebook, Link as LinkIcon } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 import awardsImage from '../assets/images/special/awardsnominee.jpg';
+
+interface VotingCategory {
+  title: string;
+  description: string;
+  link: string;
+}
+
+const votingCategories: VotingCategory[] = [
+  {
+    title: "Comedy Professional Award",
+    description: "Vote for Amanda's Trailer Park comedy content!",
+    link: "https://cheerchoiceawards.us.launchpad6.com/2025/entry/5361"
+  },
+  {
+    title: "Vlog/Blog Award",
+    description: "Support The Trailer Park content series!",
+    link: "https://cheerchoiceawards.us.launchpad6.com/2025/entry/5756"
+  }
+];
 
 interface AwardsModalProps {
   isOpen: boolean;
@@ -9,119 +28,105 @@ interface AwardsModalProps {
 }
 
 export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => {
-  const shareUrl = 'https://amandameadows.com/awards'; // Update with actual URL
-  const shareText = 'Check out Amanda Meadows\' comedy award nominations! 🏆';
-
-  const shareOnTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-    window.open(url, '_blank');
-  };
-
-  const shareOnFacebook = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-    window.open(url, '_blank');
-  };
-
-  const copyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      alert('Link copied to clipboard!');
-    } catch (err) {
-      console.error('Failed to copy link:', err);
-    }
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-          />
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={onClose}
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-[95%] max-w-4xl z-[51]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-1 rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-400">
+                <div className="relative bg-white/95 backdrop-blur-sm rounded-xl p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+                  <button
+                    onClick={onClose}
+                    className="absolute right-4 top-4 p-2 rounded-full 
+                             bg-gradient-to-br from-teal-500 to-emerald-500 text-white
+                             hover:from-teal-600 hover:to-emerald-600 
+                             transition-all duration-300"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
 
-          {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 20 }}
-            className="fixed inset-0 flex items-center justify-center p-4 z-50"
-          >
-            <div className="bg-gradient-to-br from-pink-100 to-purple-200 rounded-2xl shadow-2xl overflow-hidden w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-              {/* Close button */}
-              <button
-                onClick={onClose}
-                className="fixed top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              >
-                <X className="w-6 h-6 text-gray-800" />
-              </button>
-
-              {/* Content */}
-              <div className="p-6 md:p-8">
-                <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
-                  {/* Image */}
-                  <div className="w-full md:w-1/2 flex-shrink-0">
-                    <div className="relative pt-[75%]"> {/* 4:3 aspect ratio */}
-                      <img
-                        src={awardsImage}
-                        alt="Amanda Meadows Award Nomination"
-                        className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
-                      />
+                  <div className="flex flex-col md:flex-row gap-8">
+                    {/* Award Image */}
+                    <div className="w-full md:w-1/2">
+                      <div className="relative rounded-xl overflow-hidden bg-gradient-to-br from-teal-50 to-emerald-50 p-1">
+                        <img
+                          src={awardsImage}
+                          alt="Vote for Amanda in Cheers Choice Awards"
+                          className="w-full h-auto rounded-lg"
+                        />
+                        <div className="absolute inset-0 ring-1 ring-teal-500/20 rounded-xl" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Text content */}
-                  <div className="w-full md:w-1/2 flex flex-col">
-                    <h2 className="text-2xl md:text-3xl font-bold text-pink-800 mb-4">
-                      Award Nominations
-                    </h2>
-                    <div className="prose prose-pink">
-                      <p className="text-gray-700 mb-4">
-                        Amanda Meadows has been nominated for several prestigious comedy awards,
-                        including:
+                    {/* Voting Content */}
+                    <div className="w-full md:w-1/2 flex flex-col">
+                      <h2 className="text-3xl font-bold text-teal-800 mb-4 font-['Playfair_Display']">
+                        Vote in the Cheer Choice Awards! 🏆
+                      </h2>
+                      <p className="text-neutral-600 mb-6 font-['Montserrat']">
+                        Amanda was nominated in two categories! You can vote every day to show your support.
                       </p>
-                      <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
-                        <li>Best Comedy Special 2024</li>
-                        <li>Rising Star in Comedy</li>
-                        <li>Outstanding Character Performance</li>
-                        <li>Innovative Comedy Award</li>
-                      </ul>
-                    </div>
 
-                    {/* Share buttons */}
-                    <div className="flex flex-wrap gap-3 mt-auto pt-4">
-                      <button
-                        onClick={shareOnTwitter}
-                        className="flex items-center gap-2 px-4 py-2 bg-[#1DA1F2] text-white rounded-full hover:bg-[#1a8cd8] transition-colors"
-                      >
-                        <Twitter className="w-5 h-5" />
-                        <span className="hidden sm:inline">Share</span>
-                      </button>
-                      <button
-                        onClick={shareOnFacebook}
-                        className="flex items-center gap-2 px-4 py-2 bg-[#4267B2] text-white rounded-full hover:bg-[#365899] transition-colors"
-                      >
-                        <Facebook className="w-5 h-5" />
-                        <span className="hidden sm:inline">Share</span>
-                      </button>
-                      <button
-                        onClick={copyLink}
-                        className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-full hover:bg-gray-600 transition-colors ml-auto"
-                      >
-                        <LinkIcon className="w-5 h-5" />
-                        <span className="hidden sm:inline">Copy Link</span>
-                      </button>
+                      <div className="space-y-4">
+                        {votingCategories.map((category, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="group relative overflow-hidden rounded-xl"
+                          >
+                            <a
+                              href={category.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block p-6 bg-gradient-to-br from-teal-50 to-emerald-50
+                                       hover:from-teal-100 hover:to-emerald-100
+                                       transition-all duration-300"
+                            >
+                              <div className="flex items-start justify-between gap-4">
+                                <div>
+                                  <h3 className="text-xl font-bold text-teal-800 mb-2 font-['Playfair_Display']">
+                                    {category.title}
+                                  </h3>
+                                  <p className="text-neutral-600 font-['Montserrat']">
+                                    {category.description}
+                                  </p>
+                                </div>
+                                <ExternalLink className="w-5 h-5 text-teal-600 flex-shrink-0 mt-1" />
+                              </div>
+                              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
+                                           translate-x-[-100%] group-hover:translate-x-[100%] 
+                                           transition-transform duration-700" />
+                            </a>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <p className="mt-6 text-sm text-neutral-500 font-['Montserrat']">
+                        Thank y'all for voting for The Trailer Park! ❤️ Remember, you can vote every day!
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
