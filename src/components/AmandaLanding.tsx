@@ -5,6 +5,7 @@ import { ContactForm } from './ContactForm';
 import { NewsletterSignup } from './NewsletterSignup';
 import { BrandSlider } from './BrandSlider';
 import { AwardsModal } from './AwardsModal';
+import { ImageGallery } from './ImageGallery';
 
 // Import images
 import kvallyLogo from '../assets/images/brands/kvalleypng.png';
@@ -99,9 +100,6 @@ export const AmandaLanding: React.FC = () => {
             >
               <Trophy className="w-6 h-6" />
               <span className="relative z-10">Vote in the Awards</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
-                           translate-x-[-100%] group-hover:translate-x-[100%] 
-                           transition-transform duration-700" />
             </motion.button>
           </motion.div>
         </div>
@@ -259,6 +257,17 @@ export const AmandaLanding: React.FC = () => {
         <div className="bg-[#FDFBF7] rounded-2xl shadow-xl border border-[#D4B886]/20 overflow-hidden">
           <BrandSlider brands={brands} />
         </div>
+
+        {/* Image Gallery Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <ImageGallery />
+        </motion.section>
 
         {/* Newsletter Section */}
         <section className="py-16 bg-white">
