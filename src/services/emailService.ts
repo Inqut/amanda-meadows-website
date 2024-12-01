@@ -11,20 +11,30 @@ interface NewsletterData {
   email: string;
 }
 
-// Replace this with your Formspree form ID after signing up
-const FORMSPREE_CONTACT_FORM = 'https://formspree.io/f/mvgovjkp';
-const FORMSPREE_NEWSLETTER_FORM = 'https://formspree.io/f/mwpkwdlk';
+interface EmailResponse {
+  success: boolean;
+  error?: string;
+}
 
-const RECIPIENT_EMAIL = 'pr@theamandameadows.com';
+class EmailError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'EmailError';
+  }
+}
 
 export const emailService = {
   // Send contact form
-  sendContactForm: async (data: ContactFormData) => {
+  sendContactForm: async (data: ContactFormData): Promise<boolean> => {
     try {
-      const response = await fetch(FORMSPREE_CONTACT_FORM, {
+      if (!emailConfig.contactEndpoint) {
+        throw new EmailError('Contact form endpoint not configured');
+      }
+
+      const response = await fetch(emailConfig.contactEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: data.name,
@@ -32,45 +42,48 @@ export const emailService = {
           subject: data.subject || 'New Contact Form Submission',
           message: data.message,
           _replyto: data.email
-        })
+        }),
       });
-      
-      if (response.ok) {
-        console.log('Contact form sent successfully');
-        return { success: true, response };
-      } else {
-        throw new Error('Failed to send message');
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new EmailError(`Failed to send contact form: ${errorText}`);
       }
+
+      return true;
     } catch (error) {
-      console.error('Error sending contact form:', error);
-      return { success: false, error };
+      console.error('Error sending contact form:', error instanceof Error ? error.message : 'Unknown error');
+      return false;
     }
   },
 
   // Send newsletter subscription
-  sendNewsletterSubscription: async (data: NewsletterData) => {
+  sendNewsletterSubscription: async (data: NewsletterData): Promise<boolean> => {
     try {
-      const response = await fetch(FORMSPREE_NEWSLETTER_FORM, {
+      if (!emailConfig.newsletterEndpoint) {
+        throw new EmailError('Newsletter endpoint not configured');
+      }
+
+      const response = await fetch(emailConfig.newsletterEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: data.email,
-          _subject: 'New Newsletter Subscription',
           _replyto: data.email
-        })
+        }),
       });
 
-      if (response.ok) {
-        console.log('Newsletter subscription sent successfully');
-        return { success: true, response };
-      } else {
-        throw new Error('Failed to subscribe');
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new EmailError(`Failed to send newsletter subscription: ${errorText}`);
       }
+
+      return true;
     } catch (error) {
-      console.error('Error sending newsletter subscription:', error);
-      return { success: false, error };
+      console.error('Error sending newsletter subscription:', error instanceof Error ? error.message : 'Unknown error');
+      return false;
     }
   }
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, X, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, X, CheckCircle } from 'lucide-react';
 import { emailService } from '../services/emailService';
 
 interface NewsletterSignupProps {
@@ -12,20 +12,45 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ isOpen, onCl
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async () => {
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      setStatus('error');
+      setErrorMessage('Please enter your email address');
+      setTimeout(() => setStatus('idle'), 3000);
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address');
+      setTimeout(() => setStatus('idle'), 3000);
+      return;
+    }
+
     setIsSubmitting(true);
+    setErrorMessage('');
     
-    const result = await emailService.sendNewsletterSubscription({ email });
+    const success = await emailService.sendNewsletterSubscription({ email });
     
-    if (result.success) {
+    if (success) {
       setStatus('success');
       setEmail('');
       setTimeout(() => {
         onClose();
+        setStatus('idle');
       }, 2000);
     } else {
       setStatus('error');
+      setErrorMessage('Failed to subscribe. Please try again later.');
+      setTimeout(() => setStatus('idle'), 3000);
     }
     setIsSubmitting(false);
   };
@@ -78,7 +103,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ isOpen, onCl
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="flex-1 px-4 py-3 rounded-lg border border-[#D4B886] focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent bg-white text-[#5C4033] placeholder-[#C4A484]"
+                      className={`flex-1 px-4 py-3 rounded-lg border ${status === 'error' ? 'border-red-500' : 'border-[#D4B886]'} focus:outline-none focus:ring-2 focus:ring-[#B8860B] focus:border-transparent bg-white text-[#5C4033] placeholder-[#C4A484]`}
                     />
                     <button
                       onClick={handleSubmit}
@@ -103,9 +128,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ isOpen, onCl
                   </div>
 
                   {status === 'error' && (
-                    <p className="mt-4 text-[#8B4513] text-sm">
-                      Failed to subscribe. Please try again.
-                    </p>
+                    <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
                   )}
                   {status === 'success' && (
                     <div className="mt-4 flex items-center gap-2 text-[#8B7355]">

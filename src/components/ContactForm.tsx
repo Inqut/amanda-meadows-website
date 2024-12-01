@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Loader2, Radio, Mic, ShoppingBag, Calendar, Users } from 'lucide-react';
+import { X, Send, Mic, ShoppingBag, Calendar, Users } from 'lucide-react';
 import { emailService } from '../services/emailService';
 
 interface ContactFormProps {
@@ -36,6 +36,31 @@ export const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, type 
     subject: '',
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage('Please enter your name');
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setErrorMessage('Please enter your email address');
+      return false;
+    }
+    if (!validateEmail(formData.email)) {
+      setErrorMessage('Please enter a valid email address');
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setErrorMessage('Please enter your message');
+      return false;
+    }
+    return true;
+  };
 
   const getFormTitle = () => {
     switch (formData.inquiryType) {
@@ -65,44 +90,54 @@ export const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, type 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    if (!validateForm()) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+      return;
+    }
+
     setStatus('sending');
 
-    const result = await emailService.sendContactForm({
+    const success = await emailService.sendContactForm({
       name: formData.name,
       email: formData.email,
-      subject: formData.subject,
       message: `
-Type: ${getFormTitle()}
-Name: ${formData.name}
-Email: ${formData.email}
+Subject: ${getFormTitle()}
 Company: ${formData.company}
-Platform/Show Details: ${formData.platformDetails}
+Type: ${formData.inquiryType}
+Platform Details: ${formData.platformDetails}
 Audience Size: ${formData.audienceSize}
 Proposed Date: ${formData.proposedDate}
 Budget: ${formData.budget}
 
 Message:
 ${formData.message}
-      `,
+      `.trim()
     });
+
+    setStatus(success ? 'success' : 'error');
     
-    if (result.success) {
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        inquiryType: type,
-        platformDetails: '',
-        audienceSize: '',
-        proposedDate: '',
-        budget: '',
-        message: '',
-        subject: '',
-      });
-      setTimeout(() => setStatus('idle'), 3000);
+    if (success) {
+      setTimeout(() => {
+        onClose();
+        setStatus('idle');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          inquiryType: type,
+          platformDetails: '',
+          audienceSize: '',
+          proposedDate: '',
+          budget: '',
+          message: '',
+          subject: '',
+        });
+      }, 2000);
     } else {
-      setStatus('error');
+      setErrorMessage('Failed to send message. Please try again later.');
       setTimeout(() => setStatus('idle'), 3000);
     }
   };
@@ -302,9 +337,7 @@ ${formData.message}
 
                   <div className="flex items-center justify-end gap-4 pt-4">
                     {status === 'error' && (
-                      <p className="text-[#8B4513] text-sm">
-                        Failed to send message. Please try again.
-                      </p>
+                      <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
                     )}
                     {status === 'success' && (
                       <p className="text-[#8B7355] text-sm">
@@ -321,14 +354,14 @@ ${formData.message}
                         } transition-colors`}
                     >
                       {status === 'sending' ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Sending...
-                        </>
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Sending...</span>
+                        </div>
                       ) : (
                         <>
                           <Send className="w-5 h-5" />
-                          Send Inquiry
+                          <span>Send Message</span>
                         </>
                       )}
                     </button>
