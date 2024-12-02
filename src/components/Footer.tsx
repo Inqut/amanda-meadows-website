@@ -17,18 +17,10 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-teal-100 mb-4">Contact</h3>
             <div className="space-y-3">
-              <a href="mailto:info@amandameadows.com" className="flex items-center space-x-2 text-teal-100 hover:text-teal-300 transition-colors">
+              <a href="mailto:pr@theamandameadows.com" className="flex items-center space-x-2 text-teal-100 hover:text-teal-300 transition-colors">
                 <Mail className="h-5 w-5" />
-                <span>info@amandameadows.com</span>
+                <span>pr@theamandameadows.com</span>
               </a>
-              <a href="tel:+1234567890" className="flex items-center space-x-2 text-teal-100 hover:text-teal-300 transition-colors">
-                <Phone className="h-5 w-5" />
-                <span>(123) 456-7890</span>
-              </a>
-              <div className="flex items-center space-x-2 text-teal-100">
-                <MapPin className="h-5 w-5" />
-                <span>Charlotte, NC</span>
-              </div>
             </div>
           </div>
 
@@ -37,9 +29,9 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             <h3 className="text-xl font-semibold text-teal-100 mb-4">Quick Links</h3>
             <div className="space-y-2">
               <a href="/" className="block text-teal-100 hover:text-teal-300 transition-colors">Home</a>
-              <a href="/about" className="block text-teal-100 hover:text-teal-300 transition-colors">About</a>
-              <a href="/gallery" className="block text-teal-100 hover:text-teal-300 transition-colors">Gallery</a>
-              <a href="/contact" className="block text-teal-100 hover:text-teal-300 transition-colors">Contact</a>
+              <a href="#about" className="block text-teal-100 hover:text-teal-300 transition-colors">About</a>
+              <a href="#gallery" className="block text-teal-100 hover:text-teal-300 transition-colors">Gallery</a>
+              <a href="#contact" className="block text-teal-100 hover:text-teal-300 transition-colors">Contact</a>
             </div>
           </div>
 
@@ -48,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             <h3 className="text-xl font-semibold text-teal-100 mb-4">Follow Me</h3>
             <div className="flex space-x-6">
               <a
-                href="https://instagram.com/mandameadowss"
+                href="https://www.instagram.com/mandameadowss"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal-100 hover:text-teal-300 transition-colors transform hover:scale-110"
@@ -56,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                 <Instagram className="h-7 w-7" />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=100069612219748&mibextid=ZbWKwL"
+                href="https://www.facebook.com/profile.php?id=100069612219748"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal-100 hover:text-teal-300 transition-colors transform hover:scale-110"
@@ -64,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                 <Facebook className="h-7 w-7" />
               </a>
               <a
-                href="https://youtube.com/@Amanda_Meadows"
+                href="https://www.youtube.com/@Amanda_Meadows"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal-100 hover:text-teal-300 transition-colors transform hover:scale-110"
@@ -72,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                 <Youtube className="h-7 w-7" />
               </a>
               <a
-                href="https://tiktok.com/@mandameadows"
+                href="https://www.tiktok.com/@mandameadows"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal-100 hover:text-teal-300 transition-colors transform hover:scale-110"
