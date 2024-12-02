@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react';
-=======
-import React from 'react';
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
 import { motion } from 'framer-motion';
 import amandaHeadshot from '../assets/images/amanda/amanda1.png';
 import charleneImage from '../assets/images/charlene/Charabout.png';
@@ -11,10 +7,7 @@ import cameoImage from '../assets/images/special/Cameo.png';
 import merch1Image from '../assets/images/special/Merch1.1Charlene.jpg';
 import merch2Image from '../assets/images/special/Merch2Charlene.jpg';
 import SocialSlider from './SocialSlider';
-<<<<<<< HEAD
-import ImageGallery from './ImageGallery';
-=======
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
+import ImageGallery from './ImageGallery'; // Changed to default import
 
 export const aboutContent = {
   about: {
@@ -79,7 +72,6 @@ export const AboutContent: React.FC = () => {
     { name: "Facebook", url: "https://www.facebook.com/profile.php?id=100069612219748&mibextid=ZbWKwL", icon: "👥" }
   ];
 
-<<<<<<< HEAD
   useEffect(() => {
     // Load Cameo widget script
     const script = document.createElement('script');
@@ -92,8 +84,6 @@ export const AboutContent: React.FC = () => {
     };
   }, []);
 
-=======
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
   return (
     <div className="relative">
       <SocialSlider />
@@ -106,7 +96,6 @@ export const AboutContent: React.FC = () => {
       >
         {/* About Section */}
         <motion.section 
-<<<<<<< HEAD
           id="about"
           className="py-8 sm:py-16 px-4"
           variants={fadeInUp}
@@ -154,50 +143,6 @@ export const AboutContent: React.FC = () => {
                     </svg>
                   </a>
                 </div>
-=======
-          className="py-16 px-4"
-          variants={fadeInUp}
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <div className="space-y-6">
-                <h2 className="text-3xl sm:text-4xl font-bold text-teal-800 font-['Playfair_Display'] mb-6">
-                  {aboutContent.about.title}
-                </h2>
-                <div className="space-y-6">
-                  <p className="text-xl sm:text-2xl text-neutral-700 font-['Montserrat'] leading-relaxed">
-                    {aboutContent.about.intro}
-                  </p>
-                  <p className="text-xl sm:text-2xl text-neutral-700 font-['Montserrat'] leading-relaxed">
-                    {aboutContent.about.background}
-                  </p>
-                  <p className="text-xl sm:text-2xl text-neutral-700 font-['Montserrat'] leading-relaxed">
-                    {aboutContent.about.work}
-                  </p>
-                  <div className="pt-4">
-                    <a
-                      href={aboutContent.about.beaconsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl font-['Montserrat']"
-                    >
-                      <span className="font-medium">Connect with Amanda</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center items-center">
-                <img
-                  src={amandaHeadshot}
-                  alt="Amanda Meadows"
-                  className="rounded-2xl shadow-xl max-w-[400px] w-full hover:shadow-2xl transition-shadow duration-300"
-                />
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
               </div>
             </div>
           </div>
@@ -268,7 +213,6 @@ export const AboutContent: React.FC = () => {
         </motion.section>
 
         {/* Cameo Section */}
-<<<<<<< HEAD
         <motion.section 
           className="py-8 sm:py-16 px-4"
           variants={fadeInUp}
@@ -305,8 +249,6 @@ export const AboutContent: React.FC = () => {
         </motion.section>
 
         {/* Gallery Section */}
-=======
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
         <motion.section
           className="py-16 px-4"
           variants={fadeInUp}
@@ -314,7 +256,6 @@ export const AboutContent: React.FC = () => {
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-teal-200 max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="text-center">
-<<<<<<< HEAD
                 <h2 className="text-4xl font-bold text-teal-800 mb-4 font-['Playfair_Display']">
                   Charlene's Best Moments
                 </h2>
@@ -323,36 +264,6 @@ export const AboutContent: React.FC = () => {
                 </p>
               </div>
               <ImageGallery />
-=======
-                <img 
-                  src={cameoImage} 
-                  alt="Amanda Meadows on Cameo" 
-                  className="mx-auto mb-8 rounded-lg shadow-lg max-w-[350px] w-full hover:shadow-xl transition-shadow duration-300"
-                />
-                <h3 className="text-2xl sm:text-3xl font-bold text-teal-800 font-['Playfair_Display'] mb-4">
-                  {aboutContent.about.cameo}
-                </h3>
-                <p className="text-xl sm:text-2xl font-['Playfair_Display'] text-teal-700 mb-6">
-                  Book her on Cameo!
-                </p>
-                <a 
-                  href={aboutContent.about.cameoUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl font-['Montserrat']"
-                >
-                  <span className="font-medium">Book on Cameo</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                  </svg>
-                </a>
-              </div>
-              <p className="text-2xl sm:text-3xl italic text-teal-700 font-['Playfair_Display'] text-center">
-                {aboutContent.about.tagline}
-              </p>
->>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
             </div>
           </div>
         </motion.section>

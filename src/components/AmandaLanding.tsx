@@ -5,7 +5,7 @@ import { ContactForm } from './ContactForm';
 import { NewsletterSignup } from './NewsletterSignup';
 import { BrandSlider } from './BrandSlider';
 import { AwardsModal } from './AwardsModal';
-import { ImageGallery } from './ImageGallery';
+import ImageGallery from './ImageGallery';
 
 // Import images
 import kvallyLogo from '../assets/images/brands/kvalleypng.png';

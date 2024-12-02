@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import all gallery images
@@ -36,11 +36,24 @@ const images = [
 
 const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const [filter, setFilter] = useState<'all' | 'amanda' | 'charlene'>('all');
 
   const filteredImages = images.filter(
     img => filter === 'all' || img.category === filter
   );
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const scrollAmount = 300;
+      const targetScroll = sliderRef.current.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount);
+      sliderRef.current.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="py-12 px-4 bg-neutral-900">
@@ -116,6 +129,57 @@ const ImageGallery = () => {
           </AnimatePresence>
         </motion.div>
 
+        {/* Left Arrow */}
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-amber-400 p-2 rounded-full shadow-lg transition-all duration-300 backdrop-blur-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-amber-400 p-2 rounded-full shadow-lg transition-all duration-300 backdrop-blur-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Image Slider */}
+        <div
+          ref={sliderRef}
+          className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-4 pb-4"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {filteredImages.map((image) => (
+            <motion.div
+              key={image.src}
+              className="flex-none w-72 h-72 relative rounded-xl overflow-hidden snap-center cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(image.src)}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="text-sm font-medium">{image.alt}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Lightbox */}
         <AnimatePresence>
           {selectedImage && (
@@ -129,7 +193,7 @@ const ImageGallery = () => {
               <motion.img
                 src={selectedImage}
                 alt="Selected image"
-                className="max-h-[90vh] max-w-[90vw] object-contain"
+                className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
                 layoutId={`image-${selectedImage}`}
               />
               <button
@@ -141,6 +205,12 @@ const ImageGallery = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <style jsx global>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
       </div>
     </div>
   );
