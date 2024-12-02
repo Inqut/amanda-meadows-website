@@ -4,10 +4,24 @@ import { TikTokIcon } from './icons/TikTokIcon';
 
 interface FooterProps {
   className?: string;
+  onContactClick: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
+export const Footer: React.FC<FooterProps> = ({ className = '', onContactClick }) => {
   const currentYear = new Date().getFullYear();
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onContactClick();
+  };
+
+  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className={`bg-gradient-to-b from-teal-800 to-teal-900 text-white py-12 shadow-lg border-t border-teal-700 ${className}`}>
@@ -29,9 +43,24 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             <h3 className="text-xl font-semibold text-teal-100 mb-4">Quick Links</h3>
             <div className="space-y-2">
               <a href="/" className="block text-teal-100 hover:text-teal-300 transition-colors">Home</a>
-              <a href="#about" className="block text-teal-100 hover:text-teal-300 transition-colors">About</a>
-              <a href="#gallery" className="block text-teal-100 hover:text-teal-300 transition-colors">Gallery</a>
-              <a href="#contact" className="block text-teal-100 hover:text-teal-300 transition-colors">Contact</a>
+              <button 
+                onClick={(e) => scrollToSection(e, 'about')} 
+                className="block text-teal-100 hover:text-teal-300 transition-colors text-left w-full"
+              >
+                About
+              </button>
+              <button 
+                onClick={(e) => scrollToSection(e, 'gallery')} 
+                className="block text-teal-100 hover:text-teal-300 transition-colors text-left w-full"
+              >
+                Gallery
+              </button>
+              <button 
+                onClick={handleContactClick}
+                className="block text-teal-100 hover:text-teal-300 transition-colors text-left w-full"
+              >
+                Contact
+              </button>
             </div>
           </div>
 

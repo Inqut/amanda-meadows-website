@@ -6,6 +6,7 @@ import { NewsletterSignup } from './NewsletterSignup';
 import { BrandSlider } from './BrandSlider';
 import { AwardsModal } from './AwardsModal';
 import ImageGallery from './ImageGallery';
+import Footer from './Footer';
 
 // Import images
 import kvallyLogo from '../assets/images/brands/kvalleypng.png';
@@ -405,20 +406,19 @@ export const AmandaLanding: React.FC = () => {
           </div>
         </section>
 
-        {/* Contact Form Modal */}
-        <ContactForm 
+        {/* Footer */}
+        <Footer onContactClick={() => openContactForm('general')} />
+
+        {/* Modals */}
+        <ContactForm
           isOpen={isContactOpen}
           onClose={() => setIsContactOpen(false)}
           type={contactType}
         />
-
-        {/* Newsletter Signup Modal */}
         <NewsletterSignup
           isOpen={isNewsletterOpen}
           onClose={() => setIsNewsletterOpen(false)}
         />
-
-        {/* Awards Modal */}
         <AwardsModal
           isOpen={isAwardsOpen}
           onClose={() => setIsAwardsOpen(false)}
