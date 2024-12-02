@@ -31,7 +31,7 @@ export const aboutContent = {
   characters: {
     charlene: {
       title: "Meet Charlene",
-      description: "Meet Charlene, the undisputed Queen of the Trailer Park, whose blend of Southern sass and street-smart wisdom has captured hearts nationwide. With her signature catchphrases and no-nonsense attitude, she's become a social media sensation who proves that authentic personality always shines through. From her viral 'That Look Good?' series to her heartwarming community interactions, Charlene brings joy to millions of viewers daily.",
+      description: "Meet Charlene, the undisputed Queen of the Trailer Park, whose blend of Southern sass and street-smart wisdom has captured hearts nationwide. With her signature catchphrases and no-nonsense attitude, she's become a social media sensation who proves that authentic personality always shines through. From her viral 'Zat lewk good?' series to her heartwarming community interactions, Charlene brings joy to millions of viewers daily.",
       imageUrl: "/images/charlene.jpg",
       beaconsUrl: "https://beacons.ai/charlene",
     },

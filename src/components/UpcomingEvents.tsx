@@ -16,7 +16,7 @@ const upcomingEvents: Event[] = [
   {
     id: '1',
     title: 'Holly, Jolly, and Broke: A Trailer Park Christmas Party',
-    date: 'December 2023',
+    date: 'December 2024',
     location: 'The Train Station Corbin',
     time: '',
     image: '/images/events/2.png'

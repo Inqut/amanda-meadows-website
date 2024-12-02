@@ -7,6 +7,7 @@ import { BrandSlider } from './BrandSlider';
 import { AwardsModal } from './AwardsModal';
 import ImageGallery from './ImageGallery';
 import Footer from './Footer';
+import { AnimatedCounter } from './AnimatedCounter';
 
 // Import images
 import kvallyLogo from '../assets/images/brands/kvalleypng.png';
@@ -17,6 +18,7 @@ import dustyDiamond from '../assets/images/brands/dusty-diamond-boutique.avif';
 import guinthers from '../assets/images/brands/guinthers.avif';
 import squattyPotty from '../assets/images/brands/squatty-potty.jpeg';
 import ncCustomModulars from '../assets/images/brands/NCCustomModulars.jpeg';
+import ttsMichelle from '../assets/images/brands/tts-michelle.jpeg';
 
 // Brand data with correct logos and links
 const brands = [
@@ -86,7 +88,7 @@ export const AmandaLanding: React.FC = () => {
               Amanda Meadows
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Award-Winning Comedian • Character Artist • Digital Storyteller
+              Comedian • Content Creator • Digital Storyteller
             </p>
             <motion.button
               initial={{ opacity: 0 }}
@@ -213,51 +215,88 @@ export const AmandaLanding: React.FC = () => {
         {/* Featured In Section */}
         <section className="py-12 bg-[#FDFBF7]">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-[#8B7355] mb-8">
-              Featured In
+            <h2 className="text-3xl font-bold text-center text-[#8B7355] mb-12">
+              Impact & Reach
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
-              <div className="flex flex-col items-center text-center">
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">2M+</div>
-                <div className="text-[#8B7355]">Monthly Views</div>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">500K+</div>
-                <div className="text-[#8B7355]">Social Followers</div>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">50+</div>
-                <div className="text-[#8B7355]">Brand Partnerships</div>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="text-4xl font-bold text-[#D4AF37] mb-2">100+</div>
-                <div className="text-[#8B7355]">Live Performances</div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto mb-16">
+              <motion.div 
+                className="flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <AnimatedCounter
+                  end={9}
+                  suffix="M+"
+                  className="text-5xl font-bold text-[#D4AF37] mb-3 font-['Playfair_Display']"
+                />
+                <div className="text-[#8B7355] text-lg">Monthly Views</div>
+              </motion.div>
+              <motion.div 
+                className="flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <AnimatedCounter
+                  end={1.7}
+                  suffix="M+"
+                  className="text-5xl font-bold text-[#D4AF37] mb-3 font-['Playfair_Display']"
+                />
+                <div className="text-[#8B7355] text-lg">Total Followers</div>
+              </motion.div>
+              <motion.div 
+                className="flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <AnimatedCounter
+                  end={25}
+                  suffix="+"
+                  className="text-5xl font-bold text-[#D4AF37] mb-3 font-['Playfair_Display']"
+                />
+                <div className="text-[#8B7355] text-lg">Brand Partnerships</div>
+              </motion.div>
             </div>
 
             {/* Testimonials */}
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-center text-[#8B7355] mb-6">
+              <h3 className="text-2xl font-bold text-center text-[#8B7355] mb-8">
                 What Partners Say
               </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
-                  <p className="text-[#A69064] italic mb-4">
-                    "Amanda's authentic approach to content creation and her ability to connect with audiences made our partnership incredibly successful. Her character-driven storytelling brought our brand message to life in a unique and engaging way."
-                  </p>
-                  <div className="text-[#8B7355] font-semibold">
-                    - Marketing Director, Major Brand Partner
+              <motion.div 
+                className="bg-white p-8 rounded-xl shadow-lg border border-[#D4B886]/20 max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center mb-6">
+                  <img 
+                    src={ttsMichelle} 
+                    alt="Michelle Eidschun" 
+                    className="w-16 h-16 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <div className="text-[#8B7355] font-semibold">Michelle Eidschun</div>
+                    <a 
+                      href="https://www.thetrainstationcorbin.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[#D4AF37] hover:underline"
+                    >
+                      The Train Station, Corbin KY
+                    </a>
                   </div>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
-                  <p className="text-[#A69064] italic mb-4">
-                    "Working with Amanda was a game-changer for our event. Her characters and performances brought an energy and authenticity that our audience absolutely loved. She's a true professional who delivers beyond expectations."
-                  </p>
-                  <div className="text-[#8B7355] font-semibold">
-                    - Event Coordinator, Regional Entertainment Venue
-                  </div>
-                </div>
-              </div>
+                <p className="text-[#A69064] italic mb-4">
+                  "We were honored to host Amanda's debut performance at our venue last year. Since then, we've built an incredible partnership, and her upcoming show in December has already sold out our 500-person capacity venue in just 40 minutes - something unprecedented in East Kentucky! Her ability to connect with our audience is truly remarkable."
+                </p>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -387,16 +426,9 @@ export const AmandaLanding: React.FC = () => {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-800 mb-4 font-['Playfair_Display']">
-                  Connect With Us
-                </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                  Whether you're interested in booking me for your podcast, partnering with your brand, 
-                  or scheduling an event, I'd love to hear from you!
-                </p>
-              </div>
-
+              <h2 className="text-3xl font-bold text-center text-[#8B7355] mb-12">
+                Connect With Us
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <motion.div
                   whileHover={{ scale: 1.02 }}

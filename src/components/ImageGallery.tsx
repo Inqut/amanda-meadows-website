@@ -113,10 +113,6 @@ const ImageGallery = () => {
   return (
     <div className="py-12 px-4 bg-neutral-900 relative">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-8 text-amber-400">
-          Photo Gallery
-        </h2>
-        
         {/* Filter Buttons */}
         <div className="flex justify-center gap-4 mb-8">
           <button
@@ -185,7 +181,7 @@ const ImageGallery = () => {
                   <div className="relative w-full h-full">
                     <img
                       src={image.src}
-                      alt={image.alt}
+                      alt=""
                       className="w-full h-full object-contain"
                       style={{
                         opacity: imagesLoaded[image.src] ? 1 : 0,
@@ -197,11 +193,6 @@ const ImageGallery = () => {
                         <div className="w-12 h-12 border-4 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
                       </div>
                     )}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                    <p className="text-white text-xl font-medium">
-                      {image.alt}
-                    </p>
                   </div>
                 </motion.div>
               )
@@ -260,7 +251,7 @@ const ImageGallery = () => {
               <div className="relative w-full h-full">
                 <img
                   src={image.src}
-                  alt={image.alt}
+                  alt=""
                   className="w-full h-full object-cover"
                   style={{
                     opacity: imagesLoaded[image.src] ? 1 : 0,
@@ -290,7 +281,7 @@ const ImageGallery = () => {
               <div className="relative max-w-[90vw] max-h-[90vh]">
                 <img
                   src={selectedImage}
-                  alt="Selected image"
+                  alt=""
                   className="w-full h-full object-contain"
                   style={{
                     opacity: imagesLoaded[selectedImage] ? 1 : 0,
