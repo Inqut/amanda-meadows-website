@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React, { useEffect } from 'react';
+=======
 import React from 'react';
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
 import { motion } from 'framer-motion';
 import amandaHeadshot from '../assets/images/amanda/amanda1.png';
 import charleneImage from '../assets/images/charlene/Charabout.png';
@@ -7,6 +11,10 @@ import cameoImage from '../assets/images/special/Cameo.png';
 import merch1Image from '../assets/images/special/Merch1.1Charlene.jpg';
 import merch2Image from '../assets/images/special/Merch2Charlene.jpg';
 import SocialSlider from './SocialSlider';
+<<<<<<< HEAD
+import ImageGallery from './ImageGallery';
+=======
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
 
 export const aboutContent = {
   about: {
@@ -71,6 +79,21 @@ export const AboutContent: React.FC = () => {
     { name: "Facebook", url: "https://www.facebook.com/profile.php?id=100069612219748&mibextid=ZbWKwL", icon: "👥" }
   ];
 
+<<<<<<< HEAD
+  useEffect(() => {
+    // Load Cameo widget script
+    const script = document.createElement('script');
+    script.src = 'https://cdn.cameo.com/iframe/cameo-iframe.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+=======
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
   return (
     <div className="relative">
       <SocialSlider />
@@ -83,6 +106,55 @@ export const AboutContent: React.FC = () => {
       >
         {/* About Section */}
         <motion.section 
+<<<<<<< HEAD
+          id="about"
+          className="py-8 sm:py-16 px-4"
+          variants={fadeInUp}
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col items-center space-y-8">
+              {/* Image */}
+              <div className="w-full max-w-lg mx-auto">
+                <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                  <img
+                    src={amandaHeadshot}
+                    alt="Amanda Meadows"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Text Content */}
+              <div className="w-full max-w-2xl mx-auto text-center space-y-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-800 font-['Playfair_Display']">
+                  {aboutContent.about.title}
+                </h2>
+                <div className="space-y-4 text-lg sm:text-xl text-neutral-700">
+                  <p>
+                    {aboutContent.about.intro}
+                  </p>
+                  <p>
+                    {aboutContent.about.background}
+                  </p>
+                  <p>
+                    {aboutContent.about.work}
+                  </p>
+                </div>
+                <div className="pt-4">
+                  <a
+                    href={aboutContent.about.beaconsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl text-lg sm:text-xl font-['Montserrat']"
+                  >
+                    <span className="font-medium">Connect with Amanda</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                  </a>
+                </div>
+=======
           className="py-16 px-4"
           variants={fadeInUp}
         >
@@ -125,6 +197,7 @@ export const AboutContent: React.FC = () => {
                   alt="Amanda Meadows"
                   className="rounded-2xl shadow-xl max-w-[400px] w-full hover:shadow-2xl transition-shadow duration-300"
                 />
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
               </div>
             </div>
           </div>
@@ -195,6 +268,45 @@ export const AboutContent: React.FC = () => {
         </motion.section>
 
         {/* Cameo Section */}
+<<<<<<< HEAD
+        <motion.section 
+          className="py-8 sm:py-16 px-4"
+          variants={fadeInUp}
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+              <div className="space-y-4 sm:space-y-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-800 font-['Playfair_Display']">
+                  Book a Personal Video
+                </h2>
+                <p className="text-lg sm:text-xl text-neutral-700 font-['Montserrat']">
+                  Want a personalized video message from Charlene? Book now on Cameo!
+                </p>
+                <a 
+                  href="https://v.cameo.com/e/8E7z32hxYOb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+                >
+                  Book on Cameo →
+                </a>
+              </div>
+              <div className="relative aspect-video sm:aspect-[4/3] w-full rounded-xl overflow-hidden shadow-lg mt-4 md:mt-0">
+                <iframe
+                  src="https://v.cameo.com/e/8E7z32hxYOb"
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="Amanda Meadows' Cameo Profile"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Gallery Section */}
+=======
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
         <motion.section
           className="py-16 px-4"
           variants={fadeInUp}
@@ -202,6 +314,16 @@ export const AboutContent: React.FC = () => {
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl ring-1 ring-teal-200 max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="text-center">
+<<<<<<< HEAD
+                <h2 className="text-4xl font-bold text-teal-800 mb-4 font-['Playfair_Display']">
+                  Charlene's Best Moments
+                </h2>
+                <p className="text-xl text-teal-600 mb-8">
+                  Swipe through to relive some of Charlene's most iconic transformations and adventures
+                </p>
+              </div>
+              <ImageGallery />
+=======
                 <img 
                   src={cameoImage} 
                   alt="Amanda Meadows on Cameo" 
@@ -230,6 +352,7 @@ export const AboutContent: React.FC = () => {
               <p className="text-2xl sm:text-3xl italic text-teal-700 font-['Playfair_Display'] text-center">
                 {aboutContent.about.tagline}
               </p>
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
             </div>
           </div>
         </motion.section>

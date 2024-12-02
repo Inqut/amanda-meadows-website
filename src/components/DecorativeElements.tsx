@@ -1,5 +1,55 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+<<<<<<< HEAD
+import cigSvg from '../assets/images/svg/cig.svg';
+import scooterSvg from '../assets/images/svg/scooter.svg';
+
+const DecorativeElement: React.FC<{
+  src: string;
+  position: { top: string; left: string };
+  size: number;
+  delay?: number;
+  duration?: number;
+  path?: 'circular' | 'horizontal';
+}> = ({ src, position, size, delay = 0, duration = 20, path = 'circular' }) => {
+  const pathAnimation = path === 'circular' ? {
+    rotate: [0, 360],
+    x: [0, 100, 0, -100, 0],
+    y: [0, -100, 0, 100, 0],
+  } : {
+    x: ['-100vw', '100vw'],
+  };
+
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{
+        ...position,
+        width: size,
+        height: size,
+      }}
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: [0.6, 0.8, 0.6],
+        ...pathAnimation,
+      }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        ease: "linear",
+        delay,
+      }}
+    >
+      <div className="w-full h-full rounded-full overflow-hidden
+                    bg-gradient-to-br from-teal-400/60 to-emerald-400/60 
+                    backdrop-blur-sm shadow-lg p-3">
+        <img
+          src={src}
+          alt=""
+          className="w-full h-full object-contain"
+        />
+      </div>
+=======
 import { useInView } from 'react-intersection-observer';
 import cowgirlSvg from '../assets/images/svg/cowgirl.svg';
 import cowgirlHatSvg from '../assets/images/svg/cowgirlhat.svg';
@@ -50,10 +100,50 @@ const DecorativeElement: React.FC<DecorativeElementProps> = ({
         alt={alt}
         className="w-full h-full object-contain p-2 opacity-80"
       />
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
     </motion.div>
   );
 };
 
+<<<<<<< HEAD
+export const DecorativeElements: React.FC = () => {
+  const elements = [
+    // Larger moped making a slow circular path in top right
+    {
+      src: scooterSvg,
+      position: { top: '15%', left: '70%' },
+      size: 120,
+      duration: 30,
+      path: 'circular' as const,
+    },
+    // Medium cigarette floating in middle left
+    {
+      src: cigSvg,
+      position: { top: '40%', left: '10%' },
+      size: 80,
+      duration: 25,
+      path: 'circular' as const,
+    },
+    // Slow moving moped across bottom
+    {
+      src: scooterSvg,
+      position: { top: '75%', left: '0%' },
+      size: 100,
+      duration: 40,
+      path: 'horizontal' as const,
+    },
+  ];
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {elements.map((element, index) => (
+        <DecorativeElement
+          key={index}
+          {...element}
+          delay={index * 5}
+        />
+      ))}
+=======
 const generateElements = (
   count: number,
   src: string,
@@ -209,6 +299,7 @@ export const DecorativeElements: React.FC = () => {
           {generateFloatingLogos(4)}
         </>
       )}
+>>>>>>> ac75debc1f3dc14500cb37b3147fe356e9670226
     </div>
   );
 };
