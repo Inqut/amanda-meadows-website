@@ -39,12 +39,31 @@ const ImageGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [filter, setFilter] = useState<'all' | 'amanda' | 'charlene'>('all');
   const [direction, setDirection] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
+  const [containerHeight, setContainerHeight] = useState<number>(0);
 
   const filteredImages = images.filter(
     img => filter === 'all' || img.category === filter
   );
+
+  // Preload images
+  useEffect(() => {
+    filteredImages.forEach((image) => {
+      const img = new Image();
+      img.src = image.src;
+      img.onload = () => {
+        setImagesLoaded(prev => ({
+          ...prev,
+          [image.src]: true
+        }));
+        // Update container height based on first loaded image
+        if (Object.keys(imagesLoaded).length === 0) {
+          setContainerHeight(img.height * (window.innerWidth / img.width));
+        }
+      };
+    });
+  }, [filteredImages]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -82,6 +101,13 @@ const ImageGallery = () => {
       x: direction < 0 ? 1000 : -1000,
       opacity: 0
     })
+  };
+
+  // Calculate aspect ratio based on viewport
+  const aspectRatio = {
+    width: '100%',
+    height: containerHeight ? `${containerHeight}px` : '600px',
+    maxHeight: '80vh'
   };
 
   return (
@@ -135,33 +161,51 @@ const ImageGallery = () => {
         </div>
 
         {/* Main Slider */}
-        <div className="relative h-[600px] overflow-hidden rounded-xl">
+        <div 
+          className="relative overflow-hidden rounded-xl"
+          style={aspectRatio}
+        >
           <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={currentIndex}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              className="absolute w-full h-full"
-              onClick={() => setSelectedImage(filteredImages[currentIndex].src)}
-            >
-              <img
-                src={filteredImages[currentIndex].src}
-                alt={filteredImages[currentIndex].alt}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-white text-xl font-medium">
-                  {filteredImages[currentIndex].alt}
-                </p>
-              </div>
-            </motion.div>
+            {filteredImages.map((image, index) => (
+              index === currentIndex && (
+                <motion.div
+                  key={image.src}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                  }}
+                  className="absolute inset-0 w-full h-full"
+                  onClick={() => setSelectedImage(image.src)}
+                >
+                  <div className="relative w-full h-full">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-contain"
+                      style={{
+                        opacity: imagesLoaded[image.src] ? 1 : 0,
+                        transition: 'opacity 0.3s ease-in-out'
+                      }}
+                    />
+                    {!imagesLoaded[image.src] && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-neutral-800">
+                        <div className="w-12 h-12 border-4 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                    <p className="text-white text-xl font-medium">
+                      {image.alt}
+                    </p>
+                  </div>
+                </motion.div>
+              )
+            ))}
           </AnimatePresence>
 
           {/* Navigation Arrows */}
@@ -213,11 +257,22 @@ const ImageGallery = () => {
                 index === currentIndex ? 'ring-2 ring-amber-400' : 'opacity-50 hover:opacity-100'
               }`}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
+              <div className="relative w-full h-full">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                  style={{
+                    opacity: imagesLoaded[image.src] ? 1 : 0,
+                    transition: 'opacity 0.3s ease-in-out'
+                  }}
+                />
+                {!imagesLoaded[image.src] && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-neutral-800">
+                    <div className="w-4 h-4 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </div>
             </button>
           ))}
         </div>
@@ -232,15 +287,28 @@ const ImageGallery = () => {
               className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
               onClick={() => setSelectedImage(null)}
             >
-              <motion.img
-                src={selectedImage}
-                alt="Selected image"
-                className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
-                layoutId={`image-${selectedImage}`}
-              />
+              <div className="relative max-w-[90vw] max-h-[90vh]">
+                <img
+                  src={selectedImage}
+                  alt="Selected image"
+                  className="w-full h-full object-contain"
+                  style={{
+                    opacity: imagesLoaded[selectedImage] ? 1 : 0,
+                    transition: 'opacity 0.3s ease-in-out'
+                  }}
+                />
+                {!imagesLoaded[selectedImage] && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-12 h-12 border-4 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </div>
               <button
                 className="absolute top-4 right-4 text-white text-xl p-2 hover:bg-white/10 rounded-full"
-                onClick={() => setSelectedImage(null)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedImage(null);
+                }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
