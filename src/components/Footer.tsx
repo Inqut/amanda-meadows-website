@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Youtube, Facebook, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Youtube, Facebook, Mail } from 'lucide-react';
 import { TikTokIcon } from './icons/TikTokIcon';
 
 interface FooterProps {

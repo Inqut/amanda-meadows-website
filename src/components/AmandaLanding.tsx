@@ -119,7 +119,7 @@ export const AmandaLanding: React.FC = () => {
           </div>
 
           <div className="bg-[#FDFBF7] rounded-2xl p-8 shadow-xl border border-[#D4B886]/20">
-            <h2 className="text-3xl font-bold text-[#8B7355] mb-6">Work With Us</h2>
+            <h2 className="text-3xl font-bold text-[#8B7355] mb-6">Services & Offerings</h2>
             <div className="space-y-6">
               <BusinessService
                 icon={<Mic className="w-8 h-8 text-[#D4AF37]" />}
@@ -146,57 +146,65 @@ export const AmandaLanding: React.FC = () => {
               Work With Amanda
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
               {/* Podcast Appearances */}
               <button
                 onClick={() => openContactForm('podcast')}
-                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20"
+                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20 h-[220px] flex flex-col items-center justify-center text-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#D4AF37] rounded-xl transition-opacity group-hover:opacity-100 opacity-0" />
-                <Mic className="w-8 h-8 text-[#D4AF37] mb-4" />
-                <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Podcast Appearances</h3>
-                <p className="text-[#A69064] text-sm">
-                  Interested in having Amanda on your podcast? Let's talk!
-                </p>
+                <div className="relative z-10 flex flex-col items-center">
+                  <Mic className="w-8 h-8 text-[#D4AF37] mb-4" />
+                  <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Podcast Appearances</h3>
+                  <p className="text-[#A69064] text-sm">
+                    Interested in having Amanda on your podcast? Let's talk!
+                  </p>
+                </div>
               </button>
 
               {/* Brand Collaborations */}
               <button
                 onClick={() => openContactForm('brand')}
-                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20"
+                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20 h-[220px] flex flex-col items-center justify-center text-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#D4AF37] rounded-xl transition-opacity group-hover:opacity-100 opacity-0" />
-                <ShoppingBag className="w-8 h-8 text-[#D4AF37] mb-4" />
-                <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Brand Collaborations</h3>
-                <p className="text-[#A69064] text-sm">
-                  Partner with Amanda for brand deals and sponsorships.
-                </p>
+                <div className="relative z-10 flex flex-col items-center">
+                  <ShoppingBag className="w-8 h-8 text-[#D4AF37] mb-4" />
+                  <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Brand Collaborations</h3>
+                  <p className="text-[#A69064] text-sm">
+                    Partner with Amanda for brand deals and sponsorships.
+                  </p>
+                </div>
               </button>
 
               {/* Event Bookings */}
               <button
                 onClick={() => openContactForm('event')}
-                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20"
+                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20 h-[220px] flex flex-col items-center justify-center text-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#D4AF37] rounded-xl transition-opacity group-hover:opacity-100 opacity-0" />
-                <Calendar className="w-8 h-8 text-[#D4AF37] mb-4" />
-                <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Event Bookings</h3>
-                <p className="text-[#A69064] text-sm">
-                  Book Amanda for your next event or show.
-                </p>
+                <div className="relative z-10 flex flex-col items-center">
+                  <Calendar className="w-8 h-8 text-[#D4AF37] mb-4" />
+                  <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Event Bookings</h3>
+                  <p className="text-[#A69064] text-sm">
+                    Book Amanda for your next event or show.
+                  </p>
+                </div>
               </button>
 
               {/* Other Inquiries */}
               <button
                 onClick={() => openContactForm('general')}
-                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20"
+                className="group relative bg-[#FDFBF7] p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D4B886]/20 h-[220px] flex flex-col items-center justify-center text-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37] via-[#B8860B] to-[#D4AF37] rounded-xl transition-opacity group-hover:opacity-100 opacity-0" />
-                <Users className="w-8 h-8 text-[#D4AF37] mb-4" />
-                <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Other Inquiries</h3>
-                <p className="text-[#A69064] text-sm">
-                  Have something else in mind? Let's discuss!
-                </p>
+                <div className="relative z-10 flex flex-col items-center">
+                  <Users className="w-8 h-8 text-[#D4AF37] mb-4" />
+                  <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Other Inquiries</h3>
+                  <p className="text-[#A69064] text-sm">
+                    Have something else in mind? Let's discuss!
+                  </p>
+                </div>
               </button>
             </div>
           </div>
