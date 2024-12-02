@@ -86,7 +86,7 @@ export const AmandaLanding: React.FC = () => {
               Amanda Meadows
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Comedian • Content Creator • Entertainer
+              Award-Winning Comedian • Character Artist • Digital Storyteller
             </p>
             <motion.button
               initial={{ opacity: 0 }}
@@ -114,8 +114,7 @@ export const AmandaLanding: React.FC = () => {
             />
             <h2 className="text-3xl font-bold text-[#8B7355] mb-4">About Amanda</h2>
             <p className="text-lg text-[#A69064]">
-              Award-winning comedian and content creator specializing in character-driven comedy
-              and social media entertainment.
+              Pioneering character-driven comedy through authentic storytelling and digital innovation. With millions of views and a growing community of devoted fans, Amanda brings Southern charm and wit to life through unforgettable characters that resonate across platforms.
             </p>
           </div>
 
@@ -125,17 +124,17 @@ export const AmandaLanding: React.FC = () => {
               <BusinessService
                 icon={<Mic className="w-8 h-8 text-[#D4AF37]" />}
                 title="Podcast Appearances"
-                description="Bring authentic humor and engaging stories to your podcast"
+                description="Elevate your podcast with character-driven storytelling and authentic Southern humor that keeps audiences coming back for more"
               />
               <BusinessService
                 icon={<Handshake className="w-8 h-8 text-[#D4AF37]" />}
                 title="Brand Partnerships"
-                description="Create memorable content that resonates with your audience"
+                description="Transform your brand message through engaging character-driven content that authentically connects with audiences and drives real engagement"
               />
               <BusinessService
                 icon={<Award className="w-8 h-8 text-[#D4AF37]" />}
                 title="Speaking Engagements"
-                description="Energize your events with comedy and insights"
+                description="Bring your event to life with dynamic performances and authentic storytelling that combines entertainment with genuine Southern charm"
               />
             </div>
           </div>
@@ -158,7 +157,7 @@ export const AmandaLanding: React.FC = () => {
                   <Mic className="w-8 h-8 text-[#D4AF37] mb-4" />
                   <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Podcast Appearances</h3>
                   <p className="text-[#A69064] text-sm">
-                    Interested in having Amanda on your podcast? Let's talk!
+                    Add authentic Southern charm and character-driven storytelling to your podcast
                   </p>
                 </div>
               </button>
@@ -173,7 +172,7 @@ export const AmandaLanding: React.FC = () => {
                   <ShoppingBag className="w-8 h-8 text-[#D4AF37] mb-4" />
                   <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Brand Collaborations</h3>
                   <p className="text-[#A69064] text-sm">
-                    Partner with Amanda for brand deals and sponsorships.
+                    Create authentic, engaging content that resonates with your target audience
                   </p>
                 </div>
               </button>
@@ -188,7 +187,7 @@ export const AmandaLanding: React.FC = () => {
                   <Calendar className="w-8 h-8 text-[#D4AF37] mb-4" />
                   <h3 className="text-xl font-semibold text-[#8B7355] mb-2">Event Bookings</h3>
                   <p className="text-[#A69064] text-sm">
-                    Book Amanda for your next event or show.
+                    Transform your event with live character performances and authentic entertainment
                   </p>
                 </div>
               </button>
@@ -207,6 +206,87 @@ export const AmandaLanding: React.FC = () => {
                   </p>
                 </div>
               </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured In Section */}
+        <section className="py-12 bg-[#FDFBF7]">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center text-[#8B7355] mb-8">
+              Featured In
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
+              <div className="flex flex-col items-center text-center">
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">2M+</div>
+                <div className="text-[#8B7355]">Monthly Views</div>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">500K+</div>
+                <div className="text-[#8B7355]">Social Followers</div>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">50+</div>
+                <div className="text-[#8B7355]">Brand Partnerships</div>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="text-4xl font-bold text-[#D4AF37] mb-2">100+</div>
+                <div className="text-[#8B7355]">Live Performances</div>
+              </div>
+            </div>
+
+            {/* Testimonials */}
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-center text-[#8B7355] mb-6">
+                What Partners Say
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
+                  <p className="text-[#A69064] italic mb-4">
+                    "Amanda's authentic approach to content creation and her ability to connect with audiences made our partnership incredibly successful. Her character-driven storytelling brought our brand message to life in a unique and engaging way."
+                  </p>
+                  <div className="text-[#8B7355] font-semibold">
+                    - Marketing Director, Major Brand Partner
+                  </div>
+                </div>
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
+                  <p className="text-[#A69064] italic mb-4">
+                    "Working with Amanda was a game-changer for our event. Her characters and performances brought an energy and authenticity that our audience absolutely loved. She's a true professional who delivers beyond expectations."
+                  </p>
+                  <div className="text-[#8B7355] font-semibold">
+                    - Event Coordinator, Regional Entertainment Venue
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Creative Process Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center text-[#8B7355] mb-12">
+              The Creative Process
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="bg-[#FDFBF7] p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
+                <div className="text-[#D4AF37] text-2xl font-bold mb-4">01. Character Development</div>
+                <p className="text-[#A69064]">
+                  Each character is carefully crafted from real-life inspirations and experiences, bringing authentic Southern stories to life through unique personalities and perspectives.
+                </p>
+              </div>
+              <div className="bg-[#FDFBF7] p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
+                <div className="text-[#D4AF37] text-2xl font-bold mb-4">02. Content Creation</div>
+                <p className="text-[#A69064]">
+                  From concept to final edit, every piece of content is meticulously produced to ensure quality, authenticity, and maximum engagement with our audience.
+                </p>
+              </div>
+              <div className="bg-[#FDFBF7] p-6 rounded-xl shadow-lg border border-[#D4B886]/20">
+                <div className="text-[#D4AF37] text-2xl font-bold mb-4">03. Community Engagement</div>
+                <p className="text-[#A69064]">
+                  Building genuine connections with our audience through interactive content, live events, and personal interactions that make everyone feel part of the family.
+                </p>
+              </div>
             </div>
           </div>
         </section>
