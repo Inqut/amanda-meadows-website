@@ -12,10 +12,10 @@ import ImageGallery from './ImageGallery'; // Changed to default import
 export const aboutContent = {
   about: {
     title: "About Amanda",
-    intro: "Prepare to be entertained by the shenanigans of a Southern comedian entertainer! Dive into a world of laughter, wit, and charm. Brace yourself for content that will have you chuckling until your sides ache. Entertainment like no other awaits!",
-    background: "Born to working-class parents and raised in a large family in Suggs Trailer Park, in North Carolina, Amanda's journey through poverty has shaped her into a smart and influential figure. Her struggles have forged her sharp sense of humor and unique perspective, which she brings to life through her characters and content.",
-    work: "Amanda writes, films, edits, and creates all of her own material, delivering an authentic and relatable voice from an often overlooked demographic. Brands that work with Amanda benefit from her genuine connection with her audience and her ability to craft engaging and impactful content.",
-    cameo: "Want a personalized video message from Amanda?",
+    intro: "Step into the vibrant world of Southern comedy with Amanda Meadows, where authentic storytelling meets laugh-out-loud entertainment. Through her unique characters and witty observations, Amanda brings a fresh perspective to comedy that resonates with audiences everywhere. Get ready for content that's as genuine as it is hilarious!",
+    background: "Hailing from North Carolina's Suggs Trailer Park, Amanda Meadows brings an authentic voice to comedy that's both relatable and refreshing. Her upbringing in a close-knit working-class family has gifted her with a unique perspective and sharp wit that resonates with audiences across all walks of life. This genuine connection with her roots has become the cornerstone of her success in digital entertainment.",
+    work: "As a multi-talented creator, Amanda independently produces all her content - from writing and filming to editing - ensuring an authentic voice that speaks directly to her audience. Her genuine approach and character-driven storytelling have made her a sought-after partner for brands looking to connect with audiences through authentic, relatable content. With millions of views across platforms, Amanda's work continues to prove that genuine storytelling resonates with viewers worldwide.",
+    cameo: "Want a personalized message that'll make your day? Get a custom video from Amanda!",
     tagline: "Listen. Zat lewk gewd? Right?",
     beaconsUrl: "https://beacons.ai/mandameadows",
     cameoUrl: "https://v.cameo.com/e/8E7z32hxYOb",
@@ -31,20 +31,20 @@ export const aboutContent = {
   characters: {
     charlene: {
       title: "Meet Charlene",
-      description: "Charlene, the Trailer Park Queen, brings sass and class to every situation. With her unique perspective and quick wit, she's become a beloved character who tells it like it is.",
+      description: "Meet Charlene, the undisputed Queen of the Trailer Park, whose blend of Southern sass and street-smart wisdom has captured hearts nationwide. With her signature catchphrases and no-nonsense attitude, she's become a social media sensation who proves that authentic personality always shines through. From her viral 'That Look Good?' series to her heartwarming community interactions, Charlene brings joy to millions of viewers daily.",
       imageUrl: "/images/charlene.jpg",
       beaconsUrl: "https://beacons.ai/charlene",
     },
     henry: {
       title: "Meet Henry",
-      description: "Henry is a character who embodies the spirit of a trailer park dad. With his unique perspective and down-to-earth wisdom, he brings humor to everyday situations.",
+      description: "Henry is the quintessential trailer park philosopher, serving up life lessons with a side of laughter. From his famous 'dad talks' to his unique take on everyday situations, he's the voice of down-to-earth wisdom that reminds us all of home. His practical advice and humorous observations have earned him a dedicated following who tune in for both entertainment and unexpected insights.",
       imageUrl: "/images/henry.jpg"
     }
   },
   merch: {
     title: "Official Merch",
     subtitle: "Available at Dusty Diamond Boutique",
-    description: "Show your love for Charlene and the gang with official merchandise! Get your hands on exclusive apparel and accessories.",
+    description: "Join the Trailer Park family with our exclusive collection! From Charlene's iconic catchphrases to fan-favorite designs, our official merchandise lets you take a piece of the humor home. Each item is carefully crafted to bring that special trailer park charm to your everyday life. Whether you're looking for comfortable apparel or unique accessories, our collection has something for every fan.",
     shopUrl: "https://dustydiamondboutique.com/collections/merch?utm_content=ios&utm_medium=product-links&utm_source=copyToPasteboard"
   }
 };
