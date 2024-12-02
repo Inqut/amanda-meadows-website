@@ -2,11 +2,15 @@ import React from 'react';
 import { Instagram, Youtube, Facebook } from 'lucide-react';
 import { TikTokIcon } from './icons/TikTokIcon';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  className?: string;
+}
+
+export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-teal-900 text-white py-8">
+    <footer className={`bg-teal-900 text-white py-8 ${className}`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex space-x-6">
@@ -43,7 +47,7 @@ export const Footer: React.FC = () => {
               <TikTokIcon className="h-6 w-6" />
             </a>
           </div>
-          <p className="text-sm text-white/80">
+          <p className="text-sm text-teal-100/80">
             &copy; {currentYear} Amanda Meadows. All rights reserved.
           </p>
         </div>
