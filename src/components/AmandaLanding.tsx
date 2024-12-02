@@ -254,7 +254,7 @@ export const AmandaLanding: React.FC = () => {
         </section>
 
         {/* Brand Slider Section */}
-        <div className="bg-[#FDFBF7] rounded-2xl shadow-xl border border-[#D4B886]/20 overflow-hidden">
+        <div className="bg-[#FDFBF7] rounded-2xl shadow-xl border border-[#D4B886]/20 overflow-hidden mb-20">
           <BrandSlider brands={brands} />
         </div>
 
