@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink } from 'lucide-react';
-import awardsImage from '../assets/images/special/awardsnominee.jpg';
+import { X } from 'lucide-react';
+import awardsImage from '../assets/images/special/awardsnominee.png';
 
 interface VotingCategory {
   title: string;
@@ -11,14 +11,9 @@ interface VotingCategory {
 
 const votingCategories: VotingCategory[] = [
   {
-    title: "Comedy Professional Award",
-    description: "Vote for Amanda's Trailer Park comedy content!",
+    title: "Comedy Professional Award - Finals! 🎉",
+    description: "We've made it to the FINALS! Your daily votes got us here, and now we need your support more than ever! 👑",
     link: "https://cheerchoiceawards.us.launchpad6.com/2025/entry/5361"
-  },
-  {
-    title: "Vlog/Blog Award",
-    description: "Support The Trailer Park content series!",
-    link: "https://cheerchoiceawards.us.launchpad6.com/2025/entry/5756"
   }
 ];
 
@@ -76,10 +71,10 @@ export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => 
                     {/* Voting Content */}
                     <div className="w-full md:w-1/2 flex flex-col">
                       <h2 className="text-3xl font-bold text-teal-800 mb-4 font-['Playfair_Display']">
-                        Vote in the Cheer Choice Awards! 🏆
+                        Vote in the Cheer Choice Awards Finals! 🏆
                       </h2>
                       <p className="text-neutral-600 mb-6 font-['Montserrat']">
-                        Amanda was nominated in two categories! You can vote every day to show your support.
+                        Thanks to y'all's amazing support, we've advanced to the FINALS! You can still vote every day to help bring the crown home to the trailer park!
                       </p>
 
                       <div className="space-y-4">
@@ -99,27 +94,33 @@ export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => 
                                        hover:from-teal-100 hover:to-emerald-100
                                        transition-all duration-300"
                             >
-                              <div className="flex items-start justify-between gap-4">
+                              <div className="flex flex-col gap-4">
                                 <div>
                                   <h3 className="text-xl font-bold text-teal-800 mb-2 font-['Playfair_Display']">
                                     {category.title}
                                   </h3>
-                                  <p className="text-neutral-600 font-['Montserrat']">
+                                  <p className="text-neutral-600 font-['Montserrat'] mb-4">
                                     {category.description}
                                   </p>
                                 </div>
-                                <ExternalLink className="w-5 h-5 text-teal-600 flex-shrink-0 mt-1" />
+                                <button
+                                  className="w-full bg-gradient-to-br from-teal-500 to-emerald-500 
+                                           hover:from-teal-600 hover:to-emerald-600
+                                           text-white font-bold py-3 px-6 rounded-lg
+                                           transition-all duration-300 shadow-md hover:shadow-lg
+                                           flex items-center justify-center gap-2"
+                                >
+                                  <span>Vote Now!</span>
+                                  <span className="text-xl">🎉</span>
+                                </button>
                               </div>
-                              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
-                                           translate-x-[-100%] group-hover:translate-x-[100%] 
-                                           transition-transform duration-700" />
                             </a>
                           </motion.div>
                         ))}
                       </div>
 
                       <p className="mt-6 text-sm text-neutral-500 font-['Montserrat']">
-                        Thank y'all for voting for The Trailer Park! ❤️ Remember, you can vote every day!
+                        Y'all are the best supporters in the world! Keep voting daily to help us win this! 🎉❤️
                       </p>
                     </div>
                   </div>
