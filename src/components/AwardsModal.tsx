@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import awardsImage from '../assets/images/special/awardsnominee.png';
+import awardsImage from '@/assets/images/special/awardsnominee.png';
 
 interface VotingCategory {
   title: string;
@@ -11,8 +11,8 @@ interface VotingCategory {
 
 const votingCategories: VotingCategory[] = [
   {
-    title: "Comedy Professional Award - Finals! 🎉",
-    description: "We've made it to the FINALS! Your daily votes got us here, and now we need your support more than ever! 👑",
+    title: "Comedy Professional Award - Finals! ",
+    description: "We've made it to the FINALS! Your daily votes got us here, and now we need your support more than ever! ",
     link: "https://cheerchoiceawards.us.launchpad6.com/2025/entry/5361"
   }
 ];
@@ -71,7 +71,7 @@ export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => 
                     {/* Voting Content */}
                     <div className="w-full md:w-1/2 flex flex-col">
                       <h2 className="text-3xl font-bold text-teal-800 mb-4 font-['Playfair_Display']">
-                        Vote in the Cheer Choice Awards Finals! 🏆
+                        Vote in the Cheer Choice Awards Finals! 
                       </h2>
                       <p className="text-neutral-600 mb-6 font-['Montserrat']">
                         Thanks to y'all's amazing support, we've advanced to the FINALS! You can still vote every day to help bring the crown home to the trailer park!
@@ -111,7 +111,7 @@ export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => 
                                            flex items-center justify-center gap-2"
                                 >
                                   <span>Vote Now!</span>
-                                  <span className="text-xl">🎉</span>
+                                  <span className="text-xl"> </span>
                                 </button>
                               </div>
                             </a>
@@ -120,7 +120,7 @@ export const AwardsModal: React.FC<AwardsModalProps> = ({ isOpen, onClose }) => 
                       </div>
 
                       <p className="mt-6 text-sm text-neutral-500 font-['Montserrat']">
-                        Y'all are the best supporters in the world! Keep voting daily to help us win this! 🎉❤️
+                        Y'all are the best supporters in the world! Keep voting daily to help us win this! 
                       </p>
                     </div>
                   </div>
